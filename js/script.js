@@ -1,8 +1,12 @@
 var startButton = document.getElementsByClassName('startb');
 var enterButton = document.getElementsByClassName('enterb');
 var shuffledQuestions , currentQestion; 
-var questionEl = document.getElementById("question")
-var answerButtonsEl = document.getElementsByClassName("option")
+var questionEl = document.getElementById("question");
+var aButtonEl1 = document.getElementById('op1');
+var aButtonEl2 = document.getElementById("op2");
+var aButtonEl3 = document.getElementById('op3');
+var aButtonEl4 = document.getElementById("op4");
+var timer = document.getElementById('timer-count');
 
 
 var Questions = [{ id: 0,
@@ -76,69 +80,42 @@ var Questions = [{ id: 0,
 startButton[0].addEventListener("click", function startGame() {
     console.log('click')
     startButton?.[0]?.classList?.add('hide')
-    shuffledQuestions = Questions.sort(() => Math.random() - .5)
-    currentQestion = 0
-    questionEl.classList.remove("hide")
-    nextQuestion()
-})
- 
-enterButton[0].addEventListener("click", function enterA() {
- console.log('click')
+    questionNumber = 0
+    downer();
+    showQuestion(questionNumber);
 })
 
-function nextQuestion() {
-    showQuestion(shuffledQuestions[currentQestion]);
-}
+var seconds = 60;
 
-function showQuestion(q){
-questionEl.innerText = q.q
-q.a.forEach(a => {
-    var button = document.createElement('button')
-    button.innerText = a.text
-    button.classList.add("option")
-    if (a.correct) {
-        button.dataset.correct = a.correct
-    }
-    button.addEventListener('click', selectAnswer)
-    answerButtonsEl.appendChild(button)
-});
-}
+function downer() {
+    var timerInterval = setInterval(function(){
+        seconds--;
+        timer.textContent = 'Time ' + seconds + " going down";
 
-function selectAnswer(iterate){
+            if (seconds <= 0){
+                clearInterval(timerInterval);
+                timer.textContent = "time is up";
 
-}
-
-function startTimer() {
-    timer = setInterval(function() {
-        timerCount--;
-        timerElemern.textContent = timerCount;
-        if (timerCount >= 0) {
-            if (iswin && timerCount > 0) {
-                clearInterval(timer);
-                winGame();
+                finish.textContent = "timeis up";
+                console.log(seconds)
             }
-        }
-        if (timer === 0) {
-            clearInterval(timer)
-            loseGame()
-        }
     }, 1000)
 }
 
 
-function iterate(id) {
-
+function showQuestion(id) {
+   
     var result = document.getElementsByClassName('result');
     result[0].innerText = '';
 
-    const question = document.getElementById('question')
+    var question = document.getElementById('question')
 
     question.innerText = Questions[id].q;
 
-    const op1 = document.getElementById('op1');
-    const op2 = document.getElementById('op2');
-    const op3 = document.getElementById('op3');
-    const op4 = document.getElementById('op4');
+    var op1 = document.getElementById('op1');
+    var op2 = document.getElementById('op2');
+    var op3 = document.getElementById('op3');
+    var op4 = document.getElementById('op4');
 
     op1.innerText = Questions[id].a[0].text;
     op2.innerText = Questions[id].a[1].text;
@@ -180,9 +157,17 @@ function iterate(id) {
         op4.style.color = 'green';
         selected = op4.value;
     })
- 
+
+        questonNumber = id 
+ }
+ enterButton[0].addEventListener('click', function nextquestion(){
+    showQuestion(questionNumber++)
+})
+
+
+
+
+
+
+
     
-     
-
-
-}
