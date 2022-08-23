@@ -6,75 +6,110 @@ var aButtonEl1 = document.getElementById('op1');
 var aButtonEl2 = document.getElementById("op2");
 var aButtonEl3 = document.getElementById('op3');
 var aButtonEl4 = document.getElementById("op4");
+var optionsEl = document.getElementsByClassName("option")
 var timer = document.getElementById('timer-count');
+var result = document.getElementsByClassName('result');
+var score = 0;
 
-
-var Questions = [{ id: 0,
+var Questions = [{ 
+    id: 0,
     q: "0",
-    a: [{ text: "1: ", isCorrect: true},
-        { text: "2: ", isCorrect: true},
-        { text: "3: ", isCorrect: true},
-        { text: "4: ", isCorrect: true}
-]
+    a: [{ text: "a. ", isCorrect: true},
+        { text: "2: ", isCorrect: false},
+        { text: "3: ", isCorrect: false},
+        { text: "4: ", isCorrect: false}],
+        answers: "a"
 },{ id: 1,
     q: "1",
-    a: [{ text: "wrpmg", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "awnser", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "wrong", isCorrect: false}
-]
+        { text: "wrong", isCorrect: false}],
+        answers: "a"
 },{ id: 2,
     q: "2",
-    a: [{ text: "wrong", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "wrong", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "answer", isCorrect: false}
-]
+        { text: "answer", isCorrect: false}],
+        answers: "a"
 },{ id: 3,
     q: "3",
-    a: [{ text: "wrong", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "answer", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "wrong", isCorrect: false}
-]
+        { text: "wrong", isCorrect: false}],
+        answers: "a"
 },{ id: 4,
     q: "4",
-    a: [{ text: "answer", isCorrect: true },
+    a: [{ text: "a. ", isCorrect: true },
         { text: "wrong", isCorrect: false },
         { text: "wrong", isCorrect: false },
-        { text: "wrong", isCorrect: false }
-]
+        { text: "wrong", isCorrect: false }],
+        answers: "a"
 },{ id: 5,
     q: "5",
-    a: [{ text: "answer", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "wrong", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "wrong", isCorrect: false}
-]
+        { text: "wrong", isCorrect: false}],
+        answers: "a"
 },{ id: 6,
     q: "6",
-    a: [{ text: "answer", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "wrong", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "wrong", isCorrect: false}
-]
+        { text: "wrong", isCorrect: false}],
+        answers: "a"
 },{ id: 7,
     q: "7",
-    a: [{ text: "answer", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "wrong", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "wrong", isCorrect: false}
-]
+        { text: "wrong", isCorrect: false}],
+        answers: "a"
 },{ id: 8,
     q: "8",
-    a: [{ text: "answer", isCorrect: true},
+    a: [{ text: "a. ", isCorrect: true},
         { text: "wrong", isCorrect: false},
         { text: "wrong", isCorrect: false},
-        { text: "wrong", isCorrect: false}
-]
+        { text: "wrong", isCorrect: false}],
+        answers: "a"
 }   
 ]
+function checker(event) {
+    event.preventDefault();
 
+    
+    var answers;
+    answers = Questions[questionNumber].a[0].isCorrect;
+
+    if (Questions[questionNumber].answers !== true) {
+        result.textContent = 'Correct!';
+        score = score++;
+    } else {
+        seconds = seconds - 5;
+        result.textContent = "Nope, That is incorect" + Questions[questionNumber].answers + ",";
+    }
+
+    if (questionNumber < Questions.length -1 ) {
+
+        showQuestion(questionNumber++);
+    }else {
+        gameOver();
+    }
+}
+
+function gameOver() {
+    questionEl.style.display = "none";
+    scoreBoard.style.display = "block";
+    console.log(scoreBoard);
+    console.log(score)
+    
+    score.textContent = "your Final score is: " + score;
+
+    timer.style.display = 'none';
+}
 
 
 startButton[0].addEventListener("click", function startGame() {
@@ -96,8 +131,6 @@ function downer() {
                 clearInterval(timerInterval);
                 timer.textContent = "time is up";
 
-                finish.textContent = "timeis up";
-                console.log(seconds)
             }
     }, 1000)
 }
@@ -105,7 +138,7 @@ function downer() {
 
 function showQuestion(id) {
    
-    var result = document.getElementsByClassName('result');
+    
     result[0].innerText = '';
 
     var question = document.getElementById('question')
@@ -121,6 +154,7 @@ function showQuestion(id) {
     op2.innerText = Questions[id].a[1].text;
     op3.innerText = Questions[id].a[2].text;
     op4.innerText = Questions[id].a[3].text;
+    
 
     op1.value = Questions[id].a[0].isCorrect;
     op2.value = Questions[id].a[1].isCorrect;
@@ -158,16 +192,17 @@ function showQuestion(id) {
         selected = op4.value;
     })
 
-        questonNumber = id 
+    enterButton[0].addEventListener('click', function() {
+        if (selected == 'ture') {
+            result[0].innerHTML = 'true';
+            result[0].style.color = 'green';
+        } else {
+            result[0].innerHTML = 'false';
+            result[0].style.color = 'red';
+        }
+    })
  }
- enterButton[0].addEventListener('click', function nextquestion(){
-    showQuestion(questionNumber++)
-})
 
-
-
-
-
-
+ enterButton[0].addEventListener("click", checker)
 
     
