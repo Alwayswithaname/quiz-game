@@ -2,10 +2,10 @@ var startButton = document.getElementsByClassName('startb');
 var enterButton = document.getElementsByClassName('enterb');
 var shuffledQuestions , currentQestion; 
 var questionEl = document.getElementById("question");
-/* var aButtonEl1 = document.getElementById('op1');
-var aButtonEl2 = document.getElementById("op2");
-var aButtonEl3 = document.getElementById('op3');
-var aButtonEl4 = document.getElementById("op4"); */
+var op1 = document.getElementById('op1');
+var op2 = document.getElementById("op2");
+var op3 = document.getElementById('op3');
+var op4 = document.getElementById("op4"); 
 var optionsEl = document.getElementsByClassName("option")
 var timer = document.getElementById('timer-count');
 var result = document.getElementsByClassName('result');
@@ -128,10 +128,7 @@ function showQuestion(id) {
 
     question.innerText = Questions[id].q;
 
-    var op1 = document.getElementById('op1');
-    var op2 = document.getElementById('op2');
-    var op3 = document.getElementById('op3');
-    var op4 = document.getElementById('op4');
+   
 
     op1.innerText = Questions[id].a[0];
     op2.innerText = Questions[id].a[1];
@@ -139,10 +136,7 @@ function showQuestion(id) {
     op4.innerText = Questions[id].a[3];
     
 
-    op1.value = Questions[id].a[0];
-    op2.value = Questions[id].a[1];
-    op3.value = Questions[id].a[2];
-    op4.value = Questions[id].a[3];
+   
 
     var selected = " ";
 
@@ -151,28 +145,28 @@ function showQuestion(id) {
         op2.style.color = 'red';
         op3.style.color = 'red';
         op4.style.color = 'red';
-        selected = op1.value;
+       
     })
     op2.addEventListener('click', () => {
         op1.style.color = 'red';
         op2.style.color = 'green';
         op3.style.color= 'red';
         op4.style.color = 'red';
-        selected = op2.value;
+        
     })
     op3.addEventListener('click', () => {
         op1.style.color = 'red';
         op2.style.color = 'red';
         op3.style.color = 'green';
         op4.style.color = 'red';
-        selected = op3.value;
+        
     })
     op4.addEventListener('click', () => {
         op1.style.color = 'red';
         op2.style.color= 'red';
         op3.style.color = 'red';
         op4.style.color = 'green';
-        selected = op4.value;
+        
     })
 
     /* enterButton[0].addEventListener('click', function() {
