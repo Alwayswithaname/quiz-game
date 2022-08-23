@@ -61,9 +61,6 @@ var Questions = [{
 function checker(event) {
     event.preventDefault();
 
-    
-    
-    
 
     if (Questions[questionNumber].answers == event.target.value) {
         result.textContent = 'Correct!';
@@ -120,25 +117,13 @@ function downer() {
 
 
 function showQuestion(id) {
-   
     
-    result[0].innerText = '';
-
-    var question = document.getElementById('question')
-
-    question.innerText = Questions[id].q;
-
+    questionEl.innerText = Questions[id].q;
    
-
     op1.innerText = Questions[id].a[0];
     op2.innerText = Questions[id].a[1];
     op3.innerText = Questions[id].a[2];
     op4.innerText = Questions[id].a[3];
-    
-
-   
-
-    var selected = " ";
 
     op1.addEventListener('click', () => {
         op1.style.color = 'green';
@@ -168,17 +153,8 @@ function showQuestion(id) {
         op4.style.color = 'green';
         
     })
-
-    /* enterButton[0].addEventListener('click', function() {
-        if (selected == 'ture') {
-            result[0].innerHTML = 'true';
-            result[0].style.color = 'green';
-        } else {
-            result[0].innerHTML = 'false';
-            result[0].style.color = 'red';
-        }
-    }) */
- }
+}
+ 
 
  enterButton[0].addEventListener("click", checker)
 
