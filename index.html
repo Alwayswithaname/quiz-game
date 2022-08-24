@@ -9,29 +9,36 @@
 </head>
     <header>
         <section class="introduction"> Welcome to the show! </section>
-    </header>
-<body>
-    <main class="panel">
-        <div class="result">
-            <p> score: </p>
+        <div>
+            <button class="Score-button" id="score-Check">View Highscore</button>
         </div>
-        <section>
-            <div class="hide"></div>
-                <div id="question">
-                
-                </div>
-                <div class="options-container">
-                    <button class="option" onclick="" id="op1"> option1</button>
-                    <button class="option" id="op2"> option2</button>
-                    <button class="option" id="op3"> option3</button>
-                    <button class="option" id="op4"> option4</button>
-                </div>
-            
-        </section>
 
         <div>
             <p id="timer-count"> clock is moving: 60</p>
         </div>
+
+    </header>
+<body>
+    <main class="panel">
+        <div id="result">
+            <p>Correct or Wrong</p>
+        </div>
+        <section>
+            
+            <div id="question">
+            </div>
+            <div class="options-container">
+                
+                <button class="option" id="op1" value="a"> option1</button>
+                <button class="option" id="op2" value="b"> option2</button>
+                <button class="option" id="op3" value="c"> option3</button>
+                <button class="option" id="op4" value="d"> option4</button>
+                
+            </div>
+                
+        </section>
+
+        
     
         <div id='points'></div>
 
@@ -45,7 +52,7 @@
         
      </main> 
 
-    <script scr=" https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script src="./js/script.js"></script>
 </body>
 </html>

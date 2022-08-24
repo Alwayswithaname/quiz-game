@@ -67,6 +67,16 @@ section {
     display: none;
 }
 
+.options {
+    display: flex;
+
+    flex-direction: row;
+}
+
+.Score-button {
+    display: none;
+}
+
 @media screen and  (max-width: 1183px) {
     main {
         flex-direction: column;
