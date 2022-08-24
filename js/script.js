@@ -11,6 +11,8 @@ var op4 = document.querySelector("#op4");
 var timer = document.getElementById('timer-count');
 var result = document.getElementById('result');
 var score = 0;
+var questoinCount = 0;
+
 
 var Questions = [{ 
     
@@ -59,6 +61,24 @@ var Questions = [{
     answers: "a"    
 }   
 ]
+
+function startGame() {
+    questionNumber = 0
+    downer();
+    showQuestion(questionNumber);
+}
+
+function showQuestion(x) {
+    
+    questionEl.textContent = Questions[x].q;
+   
+    op1.textContent = Questions[x].a[0];
+    op2.textContent = Questions[x].a[1];
+    op3.textContent = Questions[x].a[2];
+    op4.textContent = Questions[x].a[3];
+    questionNumber = x;
+}
+
 function checker(event) {
     event.preventDefault();
 
@@ -80,10 +100,11 @@ function checker(event) {
 
     if (questionNumber < Questions.length - 1 ) {
 
-        showQuestion(questionNumber++);
+        showQuestion(questionNumber + 1 );
     }else {
         gameOver();
-    }
+}
+questoinCount++;
 }
 
 function gameOver() {
@@ -97,11 +118,7 @@ function gameOver() {
     timer.style.display = 'none';
 }
 
-function startGame() {
-    questionNumber = 1
-    downer();
-    showQuestion(questionNumber);
-}
+
 
 var seconds = 60;
 
@@ -119,17 +136,10 @@ function downer() {
 }
 
 
-function showQuestion(x) {
-    
-    questionEl.innerText = Questions[x].q;
-   
-    op1.textContent = Questions[x].a[0];
-    op2.textContent = Questions[x].a[1];
-    op3.textContent = Questions[x].a[2];
-    op4.textContent = Questions[x].a[3];
-    
 
-    op1.addEventListener('click', () => {
+
+
+    /* op1.addEventListener('click', () => {
         op1.style.color = 'green';
         op2.style.color = 'red';
         op3.style.color = 'red';
@@ -156,10 +166,10 @@ function showQuestion(x) {
         op3.style.color = 'red';
         op4.style.color = 'green';
         
-    })
+    }) */
 
 
-}
+
 
 startButton.addEventListener("click", startGame)
 
