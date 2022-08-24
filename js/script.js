@@ -1,74 +1,76 @@
-var startButton = document.getElementsByClassName('startb');
+var startButton = document.querySelector('.startb')
 var enterButton = document.getElementsByClassName('enterb');
 
 var questionEl = document.getElementById("question");
-var op1 = document.getElementById('op1');
-var op2 = document.getElementById("op2");
-var op3 = document.getElementById('op3');
-var op4 = document.getElementById("op4"); 
+var a = document.querySelectorAll(".option")
+var op1 = document.querySelector('#op1');
+var op2 = document.querySelector("#op2");
+var op3 = document.querySelector('#op3');
+var op4 = document.querySelector("#op4"); 
 //var optionsEl = document.getElementsByClassName("option");
 var timer = document.getElementById('timer-count');
 var result = document.getElementById('result');
 var score = 0;
 
 var Questions = [{ 
-    id: 0,
+    
     q: "0",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "
+    answers: "a"
         
-},{ id: 1,
+},{ 
     q: "1",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "
+    a: ["a.or am i ", "b.", "c. ", "d. "],
+    answers: "b"
 
-},{ id: 2,
+},{ 
     q: "2",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "    
+    answers: "c"    
 
-},{ id: 3,
+},{ 
     q: "3",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "    
+    answers: "d"    
 
-},{ id: 4,
+},{ 
     q: "4",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "
+    answers: "a"
 
-},{ id: 5,
+},{ 
     q: "5",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a."
+    answers: "a"
 
-},{ id: 6,
+},{ 
     q: "6",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "
+    answers: "a"
 
-},{ id: 7,
+},{ 
     q: "7",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a."
+    answers: "a"
 
-},{ id: 8,
+},{ 
     q: "8",
     a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a. "    
+    answers: "a"    
 }   
 ]
 function checker(event) {
     event.preventDefault();
 
         result.style.display = "block" ;
-        setTimeout(function() {
+        setTimeout(function () {
             result.style.display = "none";
         }, 1000)
 
     if (Questions[questionNumber].answers == event.target.value) {
+        
         result.textContent = 'Correct!';
-        score = score++;
+        score = score+ 1;
         console.log(score)
     } else {
         seconds = seconds - 5;
@@ -76,7 +78,7 @@ function checker(event) {
         console.log(score)
     }
 
-    if (questionNumber < Questions.length -1 ) {
+    if (questionNumber < Questions.length - 1 ) {
 
         showQuestion(questionNumber++);
     }else {
@@ -96,14 +98,10 @@ function gameOver() {
 }
 
 function startGame() {
-    questionNumber = 0
+    questionNumber = 1
     downer();
     showQuestion(questionNumber);
 }
-
-
-
-
 
 var seconds = 60;
 
@@ -121,14 +119,15 @@ function downer() {
 }
 
 
-function showQuestion(id) {
+function showQuestion(x) {
     
-    questionEl.innerText = Questions[id].q;
+    questionEl.innerText = Questions[x].q;
    
-    op1.textContent = Questions[id].a[0];
-    op2.textContent = Questions[id].a[1];
-    op3.textContent = Questions[id].a[2];
-    op4.textContent = Questions[id].a[3];
+    op1.textContent = Questions[x].a[0];
+    op2.textContent = Questions[x].a[1];
+    op3.textContent = Questions[x].a[2];
+    op4.textContent = Questions[x].a[3];
+    
 
     op1.addEventListener('click', () => {
         op1.style.color = 'green';
@@ -162,6 +161,10 @@ function showQuestion(id) {
 
 }
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startGame)
 
-enterButton[0].addEventListener('click', checker)
+a.forEach(function(click){
+    
+    click.addEventListener("click", checker);
+});
+    
