@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/refresh.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>quiz show</title>
 </head>
     <header>
-        <section class="introduction"> Welcome to the show! </section>
+        <section class="header"> </section>
         <div>
-            <button class="Score-button" id="score-Check">View Highscore</button>
+            <button class="button" id="score-Check">View Highscore</button>
         </div>
 
         <div>
@@ -19,12 +20,25 @@
 
     </header>
 <body>
+    <section class="intro-page" id="intro-page">
+        <div class="introduction">
+            <h1>
+                Welcome to the show! 
+            </h1>
+            <p id="intro">
+                Try to answer each question correctly, you have 60 seconds.
+            </p>
+        <button class="startb">start</button>
+        </div>
+        
+    </section>
+
+
     <main class="panel">
         <div id="result">
             <p>Correct or Wrong</p>
         </div>
         <section>
-            
             <div id="question">
             </div>
             <div class="options-container">
@@ -37,22 +51,34 @@
             </div>
                 
         </section>
-
-        
-    
-        <div id='points'></div>
-
-        <section>
+        <section class="submit_page" id="submit_page">
             <div>
-            <button class="startb">start</button>
+                <h2 id="finish">All Done</h2>
+                <p id="final-score">your score is </p>
+                <p>enter your tag 
+                    <input id="tag">
+                    <button class="button" id="sub_btn"></button>
+                </p>
             </div>
-            
-            <button class="enterb">Enter</button>
+
         </section>
         
+        <section class="high-ScorePg" id="high-ScorePg">go back
+            <div>
+                <h2>Highscore</h2>
+                <div id="record">
+                    <p>The records</p>
+                </div><br><br>
+                <div>
+                    <button class="button" id="back-btn">Go back</button>
+                    <button class="button" id="clear_btn">Clear scors</button>
+                </div>
+            </div>
+        </section>
      </main> 
-
-    
+     <footer>
+        <p>created by William Paulovitz 2022</p>
+     </footer>
     <script src="./js/script.js"></script>
 </body>
 </html>

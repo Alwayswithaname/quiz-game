@@ -77,6 +77,10 @@ section {
     display: none;
 }
 
+.hide {
+    display: none;
+}
+
 @media screen and  (max-width: 1183px) {
     main {
         flex-direction: column;

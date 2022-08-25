@@ -1,7 +1,7 @@
 var startButton = document.querySelector('.startb')
 var enterButton = document.getElementsByClassName('enterb');
 
-var questionEl = document.getElementById("question");
+var questionEl = document.querySelector("#question");
 var a = document.querySelectorAll(".option")
 var op1 = document.querySelector('#op1');
 var op2 = document.querySelector("#op2");
@@ -63,6 +63,8 @@ var Questions = [{
 ]
 
 function startGame() {
+    startButton.style.display = 'none';
+        
     questionNumber = 0
     downer();
     showQuestion(questionNumber);
@@ -172,6 +174,7 @@ function downer() {
 
 
 startButton.addEventListener("click", startGame)
+ 
 
 a.forEach(function(click){
     
