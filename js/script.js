@@ -237,3 +237,12 @@ scoreCheck.addEventListener("click", function(event){
     questionPgEl.style.display = "none";
     renderScore();
 })
+
+backBtnEl.addEventListener("click", function(event){
+    event.preventDefault();
+    scoreBoard.style.display = 'none';
+    introPage.style.display = "block";
+    highScorePgEl.style.display = 'none';
+    questionPgEl.style.display = "none";
+    location.reload();
+})
