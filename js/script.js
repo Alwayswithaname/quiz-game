@@ -163,9 +163,23 @@ function renderScore () {
     li.setAttribute("data-index", i);
     recordEl.appendChild(li);
     }
-    console.log(renderScore)
 }
 
+function addItem(x) {
+    var addedList = getScore();
+    addedList.push(x)
+    localStorage.setItem("scoreList", JSON.stringify(addedList));
+}
+
+
+function saveScore() {
+    var scoreItem = {
+        user: tag.value,
+        score: score
+    }
+    addItem(scoreItem)
+    renderScore();
+}
 
 var seconds = 60;
 
@@ -192,3 +206,22 @@ a.forEach(function(click){
     click.addEventListener("click", checker);
 });
     
+
+subbtnEl.addEventListener("click", function(event){
+    event.preventDefault();
+    scoreBoard.style.display = 'none';
+    introPage.style.display = "none";
+    highScorePgEl.style.display = 'block';
+    questionPgEl.style.display = "none";
+    function ();
+})
+
+
+scoreCheck.addEventListener("click", function(event){
+    event.preventDefault();
+    scoreBoard.style.display = 'none';
+    introPage.style.display = "none";
+    highScorePgEl.style.display = 'block';
+    questionPgEl.style.display = "none";
+    renderScore();
+})
