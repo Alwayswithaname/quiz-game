@@ -1,10 +1,11 @@
 var welcome = document.querySelector("#introduction");
 var introPage = document.querySelector("#intro-page");
+var startButton = document.querySelector('#startb');
 
-var startButton = document.querySelector('.startb');
-var enterButton = document.querySelector('#enterb');
 
+var questionPgEl = document.querySelector("#questionPg")
 var questionEl = document.querySelector("#question");
+
 var a = document.querySelectorAll(".option")
 var op1 = document.querySelector('#op1');
 var op2 = document.querySelector("#op2");
@@ -12,7 +13,7 @@ var op3 = document.querySelector('#op3');
 var op4 = document.querySelector("#op4"); 
 
 var scoreBoard = document.querySelector("#submit_page")
-var timer = document.querySelector('3timer-count');
+var timer = document.querySelector('#timer-count');
 var result = document.querySelector('#result');
 var fianlScore = document.querySelector("#final-score");
 var userTag = document.querySelector("#tag");
@@ -80,8 +81,8 @@ var Questions = [{
 ]
 
 function startGame() {
-    startButton.style.display = 'none';
-        
+    introPage.style.display = 'none';
+    questionPgEl.style.display = "block";
     questionNumber = 0
     downer();
     showQuestion(questionNumber);
@@ -132,11 +133,21 @@ function gameOver() {
     console.log(scoreBoard);
     console.log(score)
     
-    score.textContent = "your Final score is: " + score;
-
+    fianlScore.textContent = "your Final score is: " + score;
+    console.log(fianlScore)
     timer.style.display = 'none';
 }
 
+function getScore() {
+    var currentList = localStorage.getItem("ScoreList");
+    if (currentList !== null) {
+        latestList = JSON.parse(currentList)
+        return latestList;
+    } else {
+        latestList = [];
+    }
+    return latestList
+};
 
 
 var seconds = 60;
@@ -153,40 +164,6 @@ function downer() {
             }
     }, 1000)
 }
-
-
-
-
-
-    /* op1.addEventListener('click', () => {
-        op1.style.color = 'green';
-        op2.style.color = 'red';
-        op3.style.color = 'red';
-        op4.style.color = 'red';
-       
-    })
-    op2.addEventListener('click', () => {
-        op1.style.color = 'red';
-        op2.style.color = 'green';
-        op3.style.color= 'red';
-        op4.style.color = 'red';
-        
-    })
-    op3.addEventListener('click', () => {
-        op1.style.color = 'red';
-        op2.style.color = 'red';
-        op3.style.color = 'green';
-        op4.style.color = 'red';
-        
-    })
-    op4.addEventListener('click', () => {
-        op1.style.color = 'red';
-        op2.style.color= 'red';
-        op3.style.color = 'red';
-        op4.style.color = 'green';
-        
-    }) */
-
 
 
 
