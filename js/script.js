@@ -149,6 +149,23 @@ function getScore() {
     return latestList
 };
 
+function renderScore () {
+    recordEl.innerHTML = "";
+    recordEl.style.display = "block";
+    var highScores = sort();
+
+    var topfive = highScores.slice(0,5);
+    for (var i = 0; i < topfive.length; i++) {
+        var item = topfive[i];
+
+    var li = document.createElement("li");
+    li.textContent = item.user + " - " + item.score;
+    li.setAttribute("data-index", i);
+    recordEl.appendChild(li);
+    }
+    console.log(renderScore)
+}
+
 
 var seconds = 60;
 
