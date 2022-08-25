@@ -165,6 +165,18 @@ function renderScore () {
     }
 }
 
+function sort() {
+    var unsortedList = getScore();
+    if (getScore == null) {
+        return
+    } else {
+        unsortedList.sort(function(x,y) {
+            return y.score - x.score;
+        })
+        return unsortedList;
+    }
+}
+
 function addItem(x) {
     var addedList = getScore();
     addedList.push(x)
@@ -213,7 +225,7 @@ subbtnEl.addEventListener("click", function(event){
     introPage.style.display = "none";
     highScorePgEl.style.display = 'block';
     questionPgEl.style.display = "none";
-    function ();
+    saveScore();
 })
 
 
