@@ -1,5 +1,8 @@
-var startButton = document.querySelector('.startb')
-var enterButton = document.getElementsByClassName('enterb');
+var welcome = document.querySelector("#introduction");
+var introPage = document.querySelector("#intro-page");
+
+var startButton = document.querySelector('.startb');
+var enterButton = document.querySelector('#enterb');
 
 var questionEl = document.querySelector("#question");
 var a = document.querySelectorAll(".option")
@@ -7,9 +10,23 @@ var op1 = document.querySelector('#op1');
 var op2 = document.querySelector("#op2");
 var op3 = document.querySelector('#op3');
 var op4 = document.querySelector("#op4"); 
-//var optionsEl = document.getElementsByClassName("option");
-var timer = document.getElementById('timer-count');
-var result = document.getElementById('result');
+
+var scoreBoard = document.querySelector("#submit_page")
+var timer = document.querySelector('3timer-count');
+var result = document.querySelector('#result');
+var fianlScore = document.querySelector("#final-score");
+var userTag = document.querySelector("#tag");
+
+var subbtnEl = document.querySelector("#sub_btn");
+var highScorePgEl = document.querySelector('#high-ScorePg');
+var recordEl = document.querySelector("#record");
+var scoreCheck = document.querySelector("#score_check");
+var finish = document.querySelector("#finish");
+
+var backBtnEl = document.querySelector("#back-btn");
+var clearBtnEl = document.querySelector("#clear_btn");
+
+
 var score = 0;
 var questoinCount = 0;
 
