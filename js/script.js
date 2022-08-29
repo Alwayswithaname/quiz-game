@@ -27,59 +27,58 @@ var finish = document.querySelector("#finish");
 var backBtnEl = document.querySelector("#back-btn");
 var clearBtnEl = document.querySelector("#clear_btn");
 
-
-var score = 0;
+var seconds = 60;
 var questoinCount = 0;
-
-
+var totalScore = 0;
+//define questions and answers
 var Questions = [{ 
     
-    q: "0",
-    a: ["a. ", "b.", "c. ", "d. "],
+    q: "I picked two beautiful kidneys! I feel freakin' amazing!",
+    a: ["Dr. T. S. Venture ", "Dean Venture", "Hank Venture", "Brock Samson"],
     answers: "a"
         
 },{ 
-    q: "1",
-    a: ["a.or am i ", "b.", "c. ", "d. "],
+    q: "Hear me out, Deano. You're a smart kid and all, but you're not a wartime consigliere!",
+    a: ["The Monarch ", "Dr. T. S. Rusty Venture ", "Hank Venture", "Dr. Girlfriend"],
+    answers: "d"
+
+},{ 
+    q: " Now, Hank, touch your throat. That tube you feel is your trachea. Think of it as your handle. That thing your thumb is on is your carotid artery. Think of it as your button. I want you to grab the handle, push the button. Can you repeat that, Hank?",
+    a: ["Brock Samson ", "Dr. T. S. Rusty Venture", "Dean Venture", "Dr. Girlfriend "],
+    answers: "a"    
+
+},{ 
+    q: " What is wrong with you!? You're changing into an extra-bad person! Do you even know how many baby angels you just killed by saying that?",
+    a: ["Dean Venture ", "The Monarch", "Hank Venture ", "Dr. Girlfriend"],
+    answers: "a"    
+
+},{ 
+    q: "Yes, I belong in here, I just have a deep voice.",
+    a: ["Triana Orpheus", "Pete White", "Sally Impossible ", "Dr. Girlfriend "],
+    answers: "d"
+
+},{ 
+    q: " Do not be too hasty in entering that room. I had Taco Bell for lunch!",
+    a: ["Brock Samson ", "Baron Werner Underbheit", "The Monarch", "Dr. Byron Orpheus"],
+    answers: "d"
+
+},{ 
+    q: " Make way for the Homo Superior!",
+    a: ["Phantom Limb", "Dr. Jonas Venture, Jr.", "David Bowie", "Dr. T. S. Rusty Venture"],
+    answers: "a"
+
+},{ 
+    q: "As usual, your detective skills are impeccable, Samson. You have succeeded in exposing my sinister plan to lock myself in a dungeon, chained to an albino",
+    a: ["The Monarch ", "Baron Werner Underbheit", "Triana Orpheus ", "Master Billy Quizboy "],
     answers: "b"
 
 },{ 
-    q: "2",
-    a: ["a. ", "b.", "c. ", "d. "],
+    q: "I am not prepared to rule out the parasite hypothesis",
+    a: ["The Monarch ", "Dr. Jonas Venture, Jr", "Master Billy Quizboy ", "Dean Venture"],
     answers: "c"    
-
-},{ 
-    q: "3",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "d"    
-
-},{ 
-    q: "4",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a"
-
-},{ 
-    q: "5",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a"
-
-},{ 
-    q: "6",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a"
-
-},{ 
-    q: "7",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a"
-
-},{ 
-    q: "8",
-    a: ["a. ", "b.", "c. ", "d. "],
-    answers: "a"    
 }   
 ]
-
+//function that starts the game and timer
 function startGame() {
     introPage.style.display = 'none';
     questionPgEl.style.display = "block";
@@ -87,7 +86,7 @@ function startGame() {
     downer();
     showQuestion(questionNumber);
 }
-
+//function that conects questions, answer buttons and question number
 function showQuestion(x) {
     
     questionEl.textContent = Questions[x].q;
@@ -98,7 +97,7 @@ function showQuestion(x) {
     op4.textContent = Questions[x].a[3];
     questionNumber = x;
 }
-
+// function that checks wether the selected answer is correct or incorrect
 function checker(event) {
     event.preventDefault();
 
@@ -110,12 +109,12 @@ function checker(event) {
     if (Questions[questionNumber].answers == event.target.value) {
         
         result.textContent = 'Correct!';
-        score = score+ 1;
-        console.log(score)
+        totalScore = totalScore + 1;
+        
     } else {
-        seconds = seconds - 5;
+        seconds = seconds - 10;
         result.textContent = "Nope, That is incorect" + Questions[questionNumber].answers + ",";
-        console.log(score)
+        
     }
 
     if (questionNumber < Questions.length - 1 ) {
@@ -123,32 +122,30 @@ function checker(event) {
         showQuestion(questionNumber + 1 );
     }else {
         gameOver();
-}
+    }
 questoinCount++;
-}
+};
 
 function gameOver() {
-    questionEl.style.display = "none";
+    questionPgEl.style.display = "none";
     scoreBoard.style.display = "block";
-    console.log(scoreBoard);
-    console.log(score)
     
-    fianlScore.textContent = "your Final score is: " + score;
-    console.log(fianlScore)
+    fianlScore.textContent = "your Final score is: " + totalScore;
+    
     timer.style.display = 'none';
-}
-
+};
+//function that 
 function getScore() {
-    var currentList = localStorage.getItem("ScoreList");
+    var currentList = localStorage.getItem("scoreList");
     if (currentList !== null) {
-        latestList = JSON.parse(currentList)
+        latestList = JSON.parse(currentList);
         return latestList;
     } else {
         latestList = [];
     }
-    return latestList
+    return latestList;
 };
-
+// function that links scores to a the score board, currently not working as intened
 function renderScore () {
     recordEl.innerHTML = "";
     recordEl.style.display = "block";
@@ -162,38 +159,38 @@ function renderScore () {
     li.textContent = item.user + " - " + item.score;
     li.setAttribute("data-index", i);
     recordEl.appendChild(li);
+    
     }
-}
-
+};
+// function that sorts scors by value
 function sort() {
     var unsortedList = getScore();
     if (getScore == null) {
-        return
+        return;
     } else {
-        unsortedList.sort(function(x,y) {
-            return y.score - x.score;
+        unsortedList.sort(function(z,y) {
+            return y.score - z.score;
         })
         return unsortedList;
     }
-}
-
+};
+//function that saves score to local
 function addItem(x) {
     var addedList = getScore();
     addedList.push(x)
     localStorage.setItem("scoreList", JSON.stringify(addedList));
-}
-
-
+};
+// function that states holds and seperated a user input and score
 function saveScore() {
     var scoreItem = {
-        user: tag.value,
-        score: score
+        user: userTag.value,
+        score: totalScore
     }
-    addItem(scoreItem)
+    addItem(scoreItem);
     renderScore();
-}
+};
 
-var seconds = 60;
+
 
 function downer() {
     var timerInterval = setInterval(function(){
@@ -204,9 +201,15 @@ function downer() {
                 clearInterval(timerInterval);
                 timer.textContent = "time is up";
 
+                finish.textContent = "Time is up";
+                gameOver();
+            } else if(questoinCount >= questionEl.length +1) {
+
+            clearInterval(timerInterval);
+            gameOver();
             }
-    }, 1000)
-}
+    }, 1000);
+};
 
 
 
@@ -226,7 +229,7 @@ subbtnEl.addEventListener("click", function(event){
     highScorePgEl.style.display = 'block';
     questionPgEl.style.display = "none";
     saveScore();
-})
+});
 
 
 scoreCheck.addEventListener("click", function(event){
@@ -236,7 +239,7 @@ scoreCheck.addEventListener("click", function(event){
     highScorePgEl.style.display = 'block';
     questionPgEl.style.display = "none";
     renderScore();
-})
+});
 
 backBtnEl.addEventListener("click", function(event){
     event.preventDefault();
@@ -245,4 +248,10 @@ backBtnEl.addEventListener("click", function(event){
     highScorePgEl.style.display = 'none';
     questionPgEl.style.display = "none";
     location.reload();
-})
+});
+
+clearBtnEl.addEventListener("click", function(event){
+    event.preventDefault();
+    localStorage.clear();
+    renderScore();
+});

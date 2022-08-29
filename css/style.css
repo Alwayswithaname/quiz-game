@@ -11,6 +11,12 @@ header {
     font-size: 50px;
 }
 
+li,
+p,
+h3,
+ h2 {
+    color: wheat;
+ }
 
 body { 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -27,7 +33,7 @@ button {
     border-radius: 8px;
     color: white;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 20px;
     letter-spacing: 0.25px;
     line-height: 20px;
     max-width: 255px;
@@ -48,8 +54,8 @@ section {
     flex:  0 auto;
     justify-content: center;
     text-align: center;
-    padding: 9px;
-    margin-top: 50px;
+    padding: 15px;
+    margin-top: 40px;
     background-color: black;
     border-radius: 9px;
 }
@@ -63,7 +69,19 @@ section {
     color: white;
 }
 
-.hide {
+#score_check {
+    font-size: 20px;
+}
+
+
+.panel {
+    margin-top: 10px;
+    padding-top: 20px;
+}   
+
+.questionPg,
+.submit_page,
+.high-ScorePg {
     display: none;
 }
 
